@@ -2,7 +2,7 @@
 
 Claude Code 개인 설정 동기화용 dotfiles.
 
-추적 대상: `CLAUDE.md`, `settings.json`, `skills/` (민감파일·캐시·세션은 `.gitignore`로 제외).
+추적 대상: `CLAUDE.md`, `settings.json`, `skills/`, `hooks/` (민감파일·캐시·세션은 `.gitignore`로 제외).
 
 ## 새 기기 세팅 (예: 맥북)
 
@@ -27,6 +27,7 @@ git checkout -b main --track origin/main   # 기존 파일과 충돌 시 백업 
 
 - **`settings.json` Stop 훅**: `powershell.exe [console]::beep` → `afplay /System/Library/Sounds/Glass.aiff` 로 교체
 - **`CLAUDE.md` 개발환경 섹션**: `OS: Windows 11 / Shell: PowerShell` → `OS: macOS / Shell: zsh`
+- **`settings.json` PreToolUse/PostToolUse 훅**: `py "C:/Users/RJS/.claude/hooks/*.py"` 경로가 Windows 전용 → `python3 ~/.claude/hooks/*.py` 로 교체
 
 > 두 파일은 OS별로 값이 달라서, 필요하면 브랜치를 나눠 관리해도 됨 (`main`=공통, `windows`/`mac`=OS별).
 

@@ -6,6 +6,7 @@
 !/CLAUDE.md
 !/settings.json
 !/skills/
+!/hooks/
 !/README.md
 
 # skills 하위에서 캐시/임시 파일 제외

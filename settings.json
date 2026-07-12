@@ -2,15 +2,41 @@
   "permissions": {
     "defaultMode": "auto"
   },
-  "model": "opus[1m]",
   "hooks": {
     "Stop": [
       {
         "hooks": [
           {
             "type": "command",
-            "command": "powershell.exe -NoProfile -Command \"[console]::beep(800,300)\" 2>/dev/null || true",
-            "async": true
+            "command": "powershell.exe -NoProfile -Command \"[console]::beep(800,200)\"",
+            "timeout": 5,
+            "statusMessage": "작업 완료음"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash|PowerShell",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "py \"C:/Users/RJS/.claude/hooks/guard.py\"",
+            "timeout": 10,
+            "statusMessage": "삭제/이름변경 가드 검사"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "py \"C:/Users/RJS/.claude/hooks/format_py.py\"",
+            "timeout": 35,
+            "statusMessage": "ruff format"
           }
         ]
       }
@@ -21,5 +47,6 @@
   },
   "autoUpdatesChannel": "latest",
   "theme": "dark",
-  "skipAutoPermissionPrompt": true
+  "skipAutoPermissionPrompt": true,
+  "model": "claude-fable-5[1m]"
 }
